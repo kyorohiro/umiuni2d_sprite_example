@@ -3,9 +3,13 @@ description: A new Flutter project.
 
 dependencies:
   umiuni2d_sprite:
-    git: https://github.com/kyorohiro/umiuni2d_sprite.git
+    git:
+      url: https://github.com/kyorohiro/umiuni2d_sprite.git
+      ref: v0.0.1
   umiuni2d_sprite_html5:
-    git: https://github.com/kyorohiro/umiuni2d_sprite_html5.git
+    git:
+      url: https://github.com/kyorohiro/umiuni2d_sprite_html5.git
+      ref: v0.0.1
 dev_dependencies:
   browser: '>=0.10.0 <0.11.0'
   dart_to_js_script_rewriter: '^1.0.1'
