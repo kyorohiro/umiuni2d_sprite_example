@@ -5,12 +5,12 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.0
-  umiuni2d:
-    path: ../../engine_core
-  umiuni2d_flutter:
-    path: ../../engine_flutter
-  umiuni2d_webgl:
-    path: ../../engine_webgl
+  umiuni2d_sprite:
+    git: https://github.com/kyorohiro/umiuni2d_sprite.git
+  umiuni2d_sprite_flutter:
+    git: https://github.com/kyorohiro/umiuni2d_sprite_flutter.git
+  umiuni2d_sprite_html5:
+    git: https://github.com/kyorohiro/umiuni2d_sprite_html5.git
 flutter:
   uses-material-design: true
   assets:
