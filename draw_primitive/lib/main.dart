@@ -10,5 +10,5 @@ import 'primitive_test.dart';
 void main() {
   GameWidget game = new GameWidget();
   game.stage.root.addChild(new PrimitiveTest());
-  game.start();
+  game.start(useAnimationLoop: true);
 }
