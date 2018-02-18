@@ -2,24 +2,15 @@ name: example
 description: A new Flutter project.
 
 dependencies:
-  flutter:
-    sdk: flutter
-  cupertino_icons: ^0.1.0
   umiuni2d_sprite:
     git:
       url: https://github.com/kyorohiro/umiuni2d_sprite.git
-      ref: v0.0.2
-  umiuni2d_sprite_flutter:
-    git:
-      url: https://github.com/kyorohiro/umiuni2d_sprite_flutter.git
       ref: v0.0.2
   umiuni2d_sprite_html5:
     git:
       url: https://github.com/kyorohiro/umiuni2d_sprite_html5.git
       ref: v0.0.2
-flutter:
-  uses-material-design: true
-  assets:
-    - web/assets/se_play.json
-    - web/assets/se_play.png
+dev_dependencies:
+  browser: '>=0.10.0 <0.11.0'
+  dart_to_js_script_rewriter: '^1.0.1'
 
