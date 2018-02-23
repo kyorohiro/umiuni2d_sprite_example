@@ -35,12 +35,12 @@ class PrimitiveTest extends DisplayObject {
 
       p.style = PaintStyle.fill;
       p.color = new Color.argb(0xff, 0xff, 0xaa, 0xff);
-      canvas.drawOval(null, new Rect(150.0, 150.0, 100.0, 100.0), p);
+      canvas.drawOval(new Rect(150.0, 150.0, 100.0, 100.0), p);
 
       p.style = PaintStyle.stroke;
       p.strokeWidth = 10.0;
       p.color = new Color.argb(0xff, 0xff, 0xff, 0xaa);
-      canvas.drawOval(null, new Rect(150.0, 150.0, 100.0, 100.0), p);
+      canvas.drawOval(new Rect(150.0, 150.0, 100.0, 100.0), p);
     }
 
     if (image != null) {
@@ -49,11 +49,9 @@ class PrimitiveTest extends DisplayObject {
       //
       Rect src = new Rect(0.0, 0.0, image.w.toDouble(), image.h.toDouble());
       canvas.drawImageRect(
-          null,
           image,
           src,
-          new Rect(250.0, 25.0, image.w.toDouble() / 2, image.h.toDouble() / 2),
-          p);
+          new Rect(250.0, 25.0, image.w.toDouble() / 2, image.h.toDouble() / 2));
     }
 
     {
@@ -62,8 +60,7 @@ class PrimitiveTest extends DisplayObject {
       //p.style = TinyPaintStyle.stroke;
       //
       p.strokeWidth = 5.0;
-      canvas.drawLine(
-          null, new Point(200.0, 200.0), new Point(500.0, 200.0), p);
+      canvas.drawLine(new Point(200.0, 200.0), new Point(500.0, 200.0), p);
     }
     canvas.popMatrix();
   }
