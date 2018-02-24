@@ -16,7 +16,7 @@ class PrimitiveTest extends DisplayObject {
     {
       Paint p = new Paint();
       // canvas.clipRect(null, new TinyRect(50.0, 100.0, 150.0, 280.0));
-      canvas.drawRect(null, new Rect(50.0, 50.0, 100.0, 100.0), p);
+      canvas.drawRect(new Rect(50.0, 50.0, 100.0, 100.0), p);
     }
 
     canvas.pushMulMatrix(new Matrix4.zero()
@@ -26,12 +26,12 @@ class PrimitiveTest extends DisplayObject {
       Paint p = new Paint();
       p.color = new Color.argb(0xff, 0xff, 0xff, 0x00);
 
-      canvas.drawRect(null, new Rect(50.0, 50.0, 100.0, 100.0), p);
+      canvas.drawRect(new Rect(50.0, 50.0, 100.0, 100.0), p);
 
       p.color = new Color.argb(0xff, 0x00, 0xff, 0xff);
       p.style = PaintStyle.stroke;
       p.strokeWidth = 5.5;
-      canvas.drawRect(null, new Rect(150.0, 150.0, 100.0, 100.0), p);
+      canvas.drawRect(new Rect(150.0, 150.0, 100.0, 100.0), p);
 
       p.style = PaintStyle.fill;
       p.color = new Color.argb(0xff, 0xff, 0xaa, 0xff);

@@ -28,11 +28,12 @@ class PrimitiveTest extends DisplayObject {
 
   void onPaint(Stage stage, Canvas canvas) {
     Paint p = new Paint();
-    for (List<double> xy in touches.values) {
-      p.color = new Color.argb(0xff, 0x00, 0xff, 0xff);
-      p.style = PaintStyle.stroke;
+    for (int k in touches.keys) {
+      List<double> xy = touches[k];
+      p.color = new Color.argb(0xff, 0xff, 0xff, 0x00);
+      p.style = (k%2==0?PaintStyle.fill:PaintStyle.stroke);
       p.strokeWidth = 2.5;
-      canvas.drawRect(null, new Rect(xy[0] - 25.0, xy[1] - 25.0, 50.0, 50.0), p);
+      canvas.drawRect(new Rect(xy[0] - 25.0, xy[1] - 25.0, 50.0, 50.0), p);
     }
   }
 }
