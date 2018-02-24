@@ -18,49 +18,49 @@ class PrimitiveTest extends DisplayObject {
     }
     {
       Paint p = new Paint();
-      canvas.drawImageRect(stage,
+      canvas.drawImageRect(
           image,
           new Rect(0.0,0.0, 1.0*image.w, 1.0*image.h),
           new Rect(0.0,50.0, 40.0, 40.0),
-          p,transform: CanvasTransform.NONE);
-      canvas.drawImageRect(stage,
+          transform: CanvasTransform.NONE);
+      canvas.drawImageRect(
           image,
           new Rect(0.0,0.0, 1.0*image.w, 1.0*image.h),
           new Rect(0.0,100.0, 40.0, 40.0),
-          p,transform: CanvasTransform.ROT90);
-      canvas.drawImageRect(stage,
+          transform: CanvasTransform.ROT90);
+      canvas.drawImageRect(
           image,
           new Rect(0.0,0.0, 1.0*image.w, 1.0*image.h),
           new Rect(0.0,150.0, 40.0, 40.0),
-          p,transform: CanvasTransform.ROT180);
-      canvas.drawImageRect(stage,
+          transform: CanvasTransform.ROT180);
+      canvas.drawImageRect(
           image,
           new Rect(0.0,0.0, 1.0*image.w, 1.0*image.h),
           new Rect(0.0,200.0, 40.0, 40.0),
-          p,transform: CanvasTransform.ROT270);
+          transform: CanvasTransform.ROT270);
     }
     {
       Paint p = new Paint();
-      canvas.drawImageRect(stage,
+      canvas.drawImageRect(
           image,
           new Rect(0.0,0.0, 1.0*image.w, 1.0*image.h),
           new Rect(100.0,50.0, 40.0, 40.0),
-          p,transform: CanvasTransform.MIRROR);
-      canvas.drawImageRect(stage,
+          transform: CanvasTransform.MIRROR);
+      canvas.drawImageRect(
           image,
           new Rect(0.0,0.0, 1.0*image.w, 1.0*image.h),
           new Rect(100.0,100.0, 40.0, 40.0),
-          p,transform: CanvasTransform.MIRROR_ROT90);
-      canvas.drawImageRect(stage,
+          transform: CanvasTransform.MIRROR_ROT90);
+      canvas.drawImageRect(
           image,
           new Rect(0.0,0.0, 1.0*image.w, 1.0*image.h),
           new Rect(100.0,150.0, 40.0, 40.0),
-          p,transform: CanvasTransform.MIRROR_ROT180);
-      canvas.drawImageRect(stage,
+          transform: CanvasTransform.MIRROR_ROT180);
+      canvas.drawImageRect(
           image,
           new Rect(0.0,0.0, 1.0*image.w, 1.0*image.h),
           new Rect(100.0,200.0, 40.0, 40.0),
-          p,transform: CanvasTransform.MIRROR_ROT270);
+          transform: CanvasTransform.MIRROR_ROT270);
     }
   }
 }
