@@ -3,13 +3,19 @@ import 'package:umiuni2d_sprite/umiuni2d_sprite.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 class PrimitiveTest extends DisplayObject {
-  Image image = null;
+  Image imageA = null;
+  Image imageB = null;
+
   PrimitiveTest();
 
   void onInit(Stage stage) {
     stage.builder.loadImage("assets/test.jpg").then((Image i) {
-      image = i;
+      imageA = i;
     });
+    stage.builder.loadImage("assets/icon.png").then((Image i) {
+      imageB = i;
+    });
+
   }
 
   void onPaint(Stage stage, Canvas canvas) {
@@ -43,17 +49,32 @@ class PrimitiveTest extends DisplayObject {
       canvas.drawOval(new Rect(150.0, 150.0, 100.0, 100.0), p);
     }
 
-    if (image != null) {
-      Paint p = new Paint();
-      p.color = new Color.argb(0x50, 0xff, 0xff, 0xff);
-      //
-      Rect src = new Rect(0.0, 0.0, image.w.toDouble(), image.h.toDouble());
-      canvas.drawImageRect(
-          image,
-          src,
-          new Rect(250.0, 25.0, image.w.toDouble() / 2, image.h.toDouble() / 2));
+    for(int i=0;i<1;i++) {
+      if (imageA != null) {
+        Paint p = new Paint();
+        p.color = new Color.argb(0x50, 0xff, 0xff, 0xff);
+        //
+        Rect src = new Rect(0.0, 0.0, imageA.w.toDouble(), imageA.h.toDouble());
+        canvas.drawImageRect(
+            imageA,
+            src,
+            new Rect(
+                250.0, i+25.0, imageA.w.toDouble() / 2, imageA.h.toDouble() / 2));
+      }
     }
-
+    for(int i=0;i<1;i++) {
+      if (imageB != null) {
+        Paint p = new Paint();
+        p.color = new Color.argb(0x50, 0xff, 0xff, 0xff);
+        //
+        Rect src = new Rect(0.0, 0.0, imageB.w.toDouble(), imageB.h.toDouble());
+        canvas.drawImageRect(
+            imageB,
+            src,
+            new Rect(150.0, i+125.0, imageB.w.toDouble() / 10,
+                imageB.h.toDouble() / 10));
+      }
+    }
     {
       Paint p = new Paint();
       p.color = new Color.argb(0xff, 0xff, 0xff, 0x00);
