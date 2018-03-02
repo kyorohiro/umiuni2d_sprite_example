@@ -7,13 +7,12 @@ import 'dart:async';
 class SnowTest extends DisplayObject {
 
   void onInit(Stage stage) {
-    GameWidget builder = stage.builder;
     Snows snows = new Snows();
     addChild(snows);
 
     new Future(() async  {
-      snows.imageSets  = await builder.loadImage("assets/se_play.png");
-      List<int> x = await builder.loadBytes("assets/se_play.json");
+      snows.imageSets  = await stage.context.loadImage("assets/se_play.png");
+      List<int> x = await stage.context.loadBytes("assets/se_play.json");
       snows.spriteInfo = new SpriteSheetInfo.fronmJson(conv.UTF8.decode(x));
       for (int i = 0; i < 100; i++) {
         snows.addIdName("S001.png");

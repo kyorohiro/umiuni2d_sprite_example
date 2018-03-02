@@ -13,12 +13,11 @@ class BitmapFontTest extends DisplayObject {
   SpriteSheet sheet = null;
 
   void onInit(Stage stage) {
-    GameWidget builder = stage.builder;
-    builder.loadImage("assets/font_a.png").then((Image i) {
+    stage.context.loadImage("assets/font_a.png").then((Image i) {
       image = i;
       update();
     });
-    builder.loadBytes("assets/font_a.json").then((List<int> xx) {
+    stage.context.loadBytes("assets/font_a.json").then((List<int> xx) {
       json = conv.UTF8.decode(xx);
       update();
     });

@@ -9,10 +9,10 @@ class PrimitiveTest extends DisplayObject {
   PrimitiveTest();
 
   void onInit(Stage stage) {
-    stage.builder.loadImage("assets/test.jpg").then((Image i) {
+    stage.context.loadImage("assets/test.jpg").then((Image i) {
       imageA = i;
     });
-    stage.builder.loadImage("assets/icon.png").then((Image i) {
+    stage.context.loadImage("assets/icon.png").then((Image i) {
       imageB = i;
     });
 
