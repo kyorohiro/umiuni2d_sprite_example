@@ -14,7 +14,7 @@ class SnowTest extends DisplayObject {
       snows.imageSets  = await stage.context.loadImage("assets/se_play.png");
       List<int> x = await stage.context.loadBytes("assets/se_play.json");
       snows.spriteInfo = new SpriteSheetInfo.fronmJson(conv.UTF8.decode(x));
-      for (int i = 0; i < 100; i++) {
+      for (int i = 0; i < 50; i++) {
         snows.addIdName("S001.png");
         snows.addIdName("S002.png");
       }
