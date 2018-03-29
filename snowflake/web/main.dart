@@ -9,7 +9,6 @@ import 'package:example/primitive_test.dart';
 
 void main() {
   GameWidget game = new GameWidget();
-  game.stage.root.addChild(new SnowTest());
-  game.start(useAnimationLoop: true);
+  game.start(onStart: onStart);
 }
 

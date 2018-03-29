@@ -22,6 +22,44 @@ class SnowTest extends DisplayObject {
   }
 }
 
+Future onStart(GameWidget widget) async {
+  int wait = 20;
+  int startTime = new DateTime.now().millisecondsSinceEpoch;
+  int curretTime = startTime;
+  int prevTime = startTime;
+
+  int fpsStartTime = 0;
+  int count = 0;
+
+  widget.stage.root.addChild(new SnowTest());
+  do {
+    if(!widget.stage.startable) {
+      //
+      // in preparation
+      await new Future.delayed(new Duration(milliseconds: 20));
+      continue;
+    }
+    if(count > 60) {
+      int t = fpsStartTime;
+      fpsStartTime = new DateTime.now().millisecondsSinceEpoch;
+      print("fps(logic) ${(count~/((fpsStartTime-t)/1000))}");
+      count = 0;
+    }
+    if(count == 0) {
+      fpsStartTime = new DateTime.now().millisecondsSinceEpoch;
+    }
+    count++;
+    curretTime = new DateTime.now().millisecondsSinceEpoch;
+    widget.stage.kick(new DateTime.now().millisecondsSinceEpoch);
+    prevTime = curretTime;
+    widget.stage.markPaintshot();
+    await new Future.delayed(
+      new Duration(milliseconds: 
+            (curretTime-prevTime > wait?1:wait-(curretTime-prevTime))
+      ));
+  } while(true);
+}
+
 class Snow extends Sprite  {
   double dx = 0.0;
   double dy = 0.0;
