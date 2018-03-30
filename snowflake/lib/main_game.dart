@@ -4,23 +4,6 @@ import 'package:umiuni2d_sprite/umiuni2d_sprite_utils.dart';
 import 'dart:convert' as conv;
 import 'dart:async';
 
-class SnowTest extends DisplayObject {
-
-  void onInit(Stage stage) {
-    Snows snows = new Snows();
-    addChild(snows);
-
-    new Future(() async  {
-      snows.imageSets  = await stage.context.loadImage("assets/se_play.png");
-      List<int> x = await stage.context.loadBytes("assets/se_play.json");
-      snows.spriteInfo = new SpriteSheetInfo.fronmJson(conv.UTF8.decode(x));
-      for (int i = 0; i < 50; i++) {
-        snows.addIdName("S001.png");
-        snows.addIdName("S002.png");
-      }
-    });
-  }
-}
 
 Future onStart(GameWidget widget) async {
   int wait = 20;
@@ -54,10 +37,28 @@ Future onStart(GameWidget widget) async {
     prevTime = curretTime;
     widget.stage.markPaintshot();
     await new Future.delayed(
-      new Duration(milliseconds: 
-            (curretTime-prevTime > wait?1:wait-(curretTime-prevTime))
-      ));
+        new Duration(milliseconds:
+        (curretTime-prevTime > wait?1:wait-(curretTime-prevTime))
+        ));
   } while(true);
+}
+
+class SnowTest extends DisplayObject {
+
+  void onInit(Stage stage) {
+    Snows snows = new Snows();
+    addChild(snows);
+
+    new Future(() async  {
+      snows.imageSets  = await stage.context.loadImage("assets/se_play.png");
+      List<int> x = await stage.context.loadBytes("assets/se_play.json");
+      snows.spriteInfo = new SpriteSheetInfo.fronmJson(conv.UTF8.decode(x));
+      for (int i = 0; i < 50; i++) {
+        snows.addIdName("S001.png");
+        snows.addIdName("S002.png");
+      }
+    });
+  }
 }
 
 class Snow extends Sprite  {
@@ -71,7 +72,9 @@ class Snow extends Sprite  {
 
   Snow(Image img,
       List<Rect> srcs,List<Rect> dsts, List<CanvasTransform> transforms,
-      this.type) :super.simple(img,srcs:srcs, dsts:dsts, transforms:transforms) {
+      this.type)
+//      : super.empty(w:dsts[0].w,h:dsts[0].h, color:new Color(0xaaaa00bb)) {
+        : super.simple(img,srcs:srcs, dsts:dsts, transforms:transforms) {
     reset();
   }
 
