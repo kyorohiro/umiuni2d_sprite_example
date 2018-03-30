@@ -89,7 +89,7 @@ Future onStart(umi.GameWidget widget) async {
   int curretTime = startTime;
   int prevTime = startTime;
   widget.stage.front = controller01;
-  int wait = 20;
+  int wait = 15;
   do {
     if(!widget.stage.startable) {
       //
