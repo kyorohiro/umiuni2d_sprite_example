@@ -20,7 +20,11 @@ dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - web/assets/se_play.json
-    - web/assets/se_play.png
+    - web/assets/bg_clear01.png
+    - web/assets/bg_clear02.png
+    - web/assets/bg_clear03.png
+    - web/assets/bg_clear04.png
+    - web/assets/bg_clear05.png
+    - web/assets/bg_clear06.png
 
 
