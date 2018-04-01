@@ -7,7 +7,7 @@ class PrimitiveTest extends DisplayObject {
   PrimitiveTest();
 
   void onInit(Stage stage) {
-    stage.builder.loadImage("assets/test.jpg").then((Image i) {
+    stage.context.loadImage("assets/test.jpg").then((Image i) {
       image = i;
     });
   }

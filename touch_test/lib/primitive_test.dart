@@ -11,7 +11,7 @@ class PrimitiveTest extends DisplayObject {
   Map<int, List<double>> touches = {};
   GameWidget builder;
   void onInit(Stage stage) {
-    GameWidget builder = stage.builder;
+    GameWidget builder = stage.context;
   }
 
   bool onTouch(Stage stage, int id, StagePointerType type, double globalX, globalY) {

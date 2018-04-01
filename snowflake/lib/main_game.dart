@@ -4,18 +4,56 @@ import 'package:umiuni2d_sprite/umiuni2d_sprite_utils.dart';
 import 'dart:convert' as conv;
 import 'dart:async';
 
+
+Future onStart(GameWidget widget) async {
+  int wait = 20;
+  int startTime = new DateTime.now().millisecondsSinceEpoch;
+  int curretTime = startTime;
+  int prevTime = startTime;
+
+  int fpsStartTime = 0;
+  int count = 0;
+
+  widget.stage.root.addChild(new SnowTest());
+  do {
+    if(!widget.stage.startable) {
+      //
+      // in preparation
+      await new Future.delayed(new Duration(milliseconds: 20));
+      continue;
+    }
+    if(count > 60) {
+      int t = fpsStartTime;
+      fpsStartTime = new DateTime.now().millisecondsSinceEpoch;
+      print("fps(logic) ${(count~/((fpsStartTime-t)/1000))}");
+      count = 0;
+    }
+    if(count == 0) {
+      fpsStartTime = new DateTime.now().millisecondsSinceEpoch;
+    }
+    count++;
+    curretTime = new DateTime.now().millisecondsSinceEpoch;
+    widget.stage.kick(new DateTime.now().millisecondsSinceEpoch);
+    prevTime = curretTime;
+    widget.stage.markPaintshot();
+    await new Future.delayed(
+        new Duration(milliseconds:
+        (curretTime-prevTime > wait?1:wait-(curretTime-prevTime))
+        ));
+  } while(true);
+}
+
 class SnowTest extends DisplayObject {
 
   void onInit(Stage stage) {
-    GameWidget builder = stage.builder;
     Snows snows = new Snows();
     addChild(snows);
 
     new Future(() async  {
-      snows.imageSets  = await builder.loadImage("assets/se_play.png");
-      List<int> x = await builder.loadBytes("assets/se_play.json");
+      snows.imageSets  = await stage.context.loadImage("assets/se_play.png");
+      List<int> x = await stage.context.loadBytes("assets/se_play.json");
       snows.spriteInfo = new SpriteSheetInfo.fronmJson(conv.UTF8.decode(x));
-      for (int i = 0; i < 100; i++) {
+      for (int i = 0; i < 50; i++) {
         snows.addIdName("S001.png");
         snows.addIdName("S002.png");
       }
@@ -34,7 +72,9 @@ class Snow extends Sprite  {
 
   Snow(Image img,
       List<Rect> srcs,List<Rect> dsts, List<CanvasTransform> transforms,
-      this.type) :super.simple(img,srcs:srcs, dsts:dsts, transforms:transforms) {
+      this.type)
+//      : super.empty(w:dsts[0].w,h:dsts[0].h, color:new Color(0xaaaa00bb)) {
+        : super.simple(img,srcs:srcs, dsts:dsts, transforms:transforms) {
     reset();
   }
 

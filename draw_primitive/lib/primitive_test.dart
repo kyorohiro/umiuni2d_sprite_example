@@ -1,6 +1,45 @@
 import 'dart:math' as math;
 import 'package:umiuni2d_sprite/umiuni2d_sprite.dart';
 import 'package:vector_math/vector_math_64.dart';
+import 'dart:async';
+
+
+Future onStart(GameWidget widget) async {
+  int wait = 20;
+  int startTime = new DateTime.now().millisecondsSinceEpoch;
+  int curretTime = startTime;
+  int prevTime = startTime;
+
+  int fpsStartTime = 0;
+  int count = 0;
+
+  widget.stage.root.addChild(new PrimitiveTest());
+  do {
+    if(!widget.stage.startable) {
+      //
+      // in preparation
+      await new Future.delayed(new Duration(milliseconds: 20));
+      continue;
+    }
+    if(count > 60) {
+      int t = fpsStartTime;
+      fpsStartTime = new DateTime.now().millisecondsSinceEpoch;
+      print("fps(logic) ${(count~/((fpsStartTime-t)/1000))}");
+      count = 0;
+    }
+    if(count == 0) {
+      fpsStartTime = new DateTime.now().millisecondsSinceEpoch;
+    }
+    count++;
+    curretTime = new DateTime.now().millisecondsSinceEpoch;
+    widget.stage.kick(new DateTime.now().millisecondsSinceEpoch);
+    prevTime = curretTime;
+    widget.stage.markPaintshot();
+    await new Future.delayed(new Duration(milliseconds:
+        (curretTime-prevTime > wait?1:wait-(curretTime-prevTime))
+        ));
+  } while(true);
+}
 
 class PrimitiveTest extends DisplayObject {
   Image imageA = null;
@@ -9,10 +48,10 @@ class PrimitiveTest extends DisplayObject {
   PrimitiveTest();
 
   void onInit(Stage stage) {
-    stage.builder.loadImage("assets/test.jpg").then((Image i) {
+    stage.context.loadImage("assets/test.jpg").then((Image i) {
       imageA = i;
     });
-    stage.builder.loadImage("assets/icon.png").then((Image i) {
+    stage.context.loadImage("assets/icon.png").then((Image i) {
       imageB = i;
     });
 
