@@ -6,7 +6,7 @@ import 'dart:async';
 
 
 Future onStart(GameWidget widget) async {
-  int wait = 20;
+  int wait = 15;
   int startTime = new DateTime.now().millisecondsSinceEpoch;
   int curretTime = startTime;
   int prevTime = startTime;
@@ -22,10 +22,10 @@ Future onStart(GameWidget widget) async {
       await new Future.delayed(new Duration(milliseconds: 20));
       continue;
     }
-    if(count > 60) {
+    if(count >= 1000) {
       int t = fpsStartTime;
       fpsStartTime = new DateTime.now().millisecondsSinceEpoch;
-      print("fps(logic) ${(count~/((fpsStartTime-t)/1000))}");
+      print("fps(logic)c: ${((fpsStartTime-t)/1000)}, fps:${(count~/((fpsStartTime-t)/1000))}");
       count = 0;
     }
     if(count == 0) {
@@ -33,13 +33,13 @@ Future onStart(GameWidget widget) async {
     }
     count++;
     curretTime = new DateTime.now().millisecondsSinceEpoch;
-    widget.stage.kick(new DateTime.now().millisecondsSinceEpoch);
-    prevTime = curretTime;
+    widget.stage.kick(curretTime);
     widget.stage.markPaintshot();
     await new Future.delayed(
         new Duration(milliseconds:
-        (curretTime-prevTime > wait?1:wait-(curretTime-prevTime))
+        (curretTime-prevTime > wait*2?1:wait*2-(curretTime-prevTime))
         ));
+    prevTime = curretTime;
   } while(true);
 }
 
