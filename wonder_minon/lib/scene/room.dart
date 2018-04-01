@@ -126,17 +126,18 @@ class RoomScene extends umi.Scene {
 
   void onTick(umi.Stage stage, int timeStamp) {
     super.onTick(stage, timeStamp);
-    if ((joystick.registerDown == true && joystick.registerUp == true && joystick.directionX_released > 0.55)) {
+    if ((joystick.registerDown == true && joystick.registerUp == true && joystick.directionX_saved > 0.55)) {
       this.joystick.registerDown = false;
-      print("## + >>> ${joystick.directionX} : ${joystick.directionX_released}");
+      print("## + >>> ${joystick.directionX} : ${joystick.directionX_saved}");
       updateLevel(game.level+1);
     }
-    else if ((joystick.registerDown == true && joystick.registerUp == true && joystick.directionX_released < -0.55)) {
+    else if ((joystick.registerDown == true && joystick.registerUp == true && joystick.directionX_saved < -0.55)) {
       this.joystick.registerDown = false;
       updateLevel(game.level-1);
-      print("## - >>> ${joystick.directionX} : ${joystick.directionX_released}");
+      print("## - >>> ${joystick.directionX} : ${joystick.directionX_saved}");
     }
     this.joystick.registerUp = false;
+    this.joystick.saveDirectionXY();
 
     if(this.buttonR.isTouch || this.buttonL.isTouch) {
       clickPlay(stage);

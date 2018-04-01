@@ -95,11 +95,13 @@ class PlayScene extends umi.DisplayObject {
     if (joystick.directionY > 0.80) {
       mbase = 0.68;
     }
-    if (joystick.directionX > mbase || (joystick.registerDown == true && joystick.registerUp == true && joystick.directionX_released > mbase)) {
+    if (joystick.directionX > mbase || (joystick.registerDown == true && joystick.registerUp == true
+        && joystick.directionX_saved > mbase)) {
       joystick.registerDown = false;
       game.rightWithLevel(timeStamp, force: joystick.registerUp);
       isMoved = true;
-    } else if (joystick.directionX < -1 * mbase || (joystick.registerDown == true && joystick.registerUp == true && joystick.directionX_released < -1 * mbase)) {
+    } else if (joystick.directionX < -1 * mbase || (joystick.registerDown == true && joystick.registerUp == true
+        && joystick.directionX_saved < -1 * mbase)) {
       joystick.registerDown = false;
       game.leftWithLevel(timeStamp, force: joystick.registerUp);
       isMoved = true;
@@ -136,6 +138,7 @@ class PlayScene extends umi.DisplayObject {
 //      this.root.startC();
     }
     joystick.registerUp = false;
+    joystick.saveDirectionXY();
     rotateL.registerUp = false;
     rotateR.registerUp = false;
     game.registerNext = false;

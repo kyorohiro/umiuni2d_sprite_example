@@ -1,6 +1,5 @@
 library wonder_minon;
 import 'package:umiuni2d_sprite/umiuni2d_sprite.dart' as umi;
-import 'package:umiuni2d_sprite/umiuni2d_sprite_utils.dart' as umi;
 import 'dart:async';
 import 'logic/minon.dart'; // monon logic
 import 'dart:math' as math;
