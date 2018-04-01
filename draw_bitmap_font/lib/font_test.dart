@@ -4,8 +4,14 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'dart:convert' as conv;
 import 'package:umiuni2d_sprite/umiuni2d_sprite.dart';
-import 'package:umiuni2d_sprite/umiuni2d_sprite_utils.dart';
 
+Future onStart(GameWidget game) async {
+  game.stage.root.addChild(new BitmapFontTest());
+  //
+  // onshot paint request
+  game.stage.markPaintshot();
+  return;
+}
 
 class BitmapFontTest extends DisplayObject {
   String json = null;
@@ -16,10 +22,14 @@ class BitmapFontTest extends DisplayObject {
     stage.context.loadImage("assets/font_a.png").then((Image i) {
       image = i;
       update();
+      // onshot paint request
+      stage.markPaintshot();
     });
     stage.context.loadBytes("assets/font_a.json").then((List<int> xx) {
       json = conv.UTF8.decode(xx);
       update();
+      // onshot paint request
+      stage.markPaintshot();
     });
   }
 
