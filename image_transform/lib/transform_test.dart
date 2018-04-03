@@ -1,15 +1,22 @@
 import 'dart:math' as math;
 import 'package:umiuni2d_sprite/umiuni2d_sprite.dart';
 import 'package:vector_math/vector_math_64.dart';
+import 'dart:async';
 
-class PrimitiveTest extends DisplayObject {
+Future onStart(GameWidget game) async {
+  game.stage.root.addChild(new TransformTest());
+  game.stage.markPaintshot();
+}
+
+class TransformTest extends DisplayObject {
   GameWidget builder;
   Image image = null;
-  PrimitiveTest();
+  TransformTest();
 
   void onInit(Stage stage) {
     stage.context.loadImage("assets/icon.png").then((Image i) {
       image = i;
+      stage.markPaintshot();
     });
   }
   void onPaint(Stage stage, Canvas canvas) {
