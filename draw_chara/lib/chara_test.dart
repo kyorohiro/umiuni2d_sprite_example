@@ -19,13 +19,14 @@ Future onStart(umiuni2d.GameWidget _builder) async {
   chara.scaleY = 0.8;
 
   while (_stage != null) {
+    int currentEpochTime = new DateTime.now().millisecondsSinceEpoch;
     //
     // calc rorate
-    chara.rotation = math.PI * ((new DateTime.now().millisecondsSinceEpoch) / 1000);
+    chara.rotation = math.PI * (currentEpochTime / 1000);
 
     //
     //
-    chara.currentFrameID = (chara.currentFrameID < chara.numOfFrameID?chara.numOfFrameID+1:0);
+    chara.currentFrameID = (currentEpochTime~/100)%3;
 
     //
     // request redraw
