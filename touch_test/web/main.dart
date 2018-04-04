@@ -9,6 +9,6 @@ import 'package:example/touchtest.dart';
 
 void main() {
   GameWidget game = new GameWidget();
-  game.start(useAnimationLoop: true);
+  game.start(onStart: onStart);
 }
 
