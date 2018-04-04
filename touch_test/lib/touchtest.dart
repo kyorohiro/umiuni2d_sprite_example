@@ -1,9 +1,26 @@
 import 'dart:math' as math;
 import 'package:umiuni2d_sprite/umiuni2d_sprite.dart';
 import 'package:vector_math/vector_math_64.dart';
+import 'dart:async';
 
-class PrimitiveTest extends DisplayObject {
-  PrimitiveTest() {
+Future onStart(GameWidget game) async {
+  game.stage.root.addChild(new TouchTest());
+  Stage stage = game.stage;
+  while(true) {
+    int currentEpochTime = new DateTime.now().millisecondsSinceEpoch;
+
+    //
+    // request redraw
+    stage.markPaintshot();
+
+    //
+    // sleep
+    await new Future.delayed(new Duration(milliseconds: 20));
+  }
+}
+
+class TouchTest extends DisplayObject {
+  TouchTest() {
     // for container test
     mat.rotateZ(math.PI / 10);
   }
