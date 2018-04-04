@@ -1,7 +1,11 @@
 import 'dart:math' as math;
 import 'package:umiuni2d_sprite/umiuni2d_sprite.dart';
 import 'package:vector_math/vector_math_64.dart';
+import 'dart:async';
 
+Future onStart(GameWidget game) async {
+  game.stage.root.addChild(new PrimitiveTest());
+}
 class PrimitiveTest extends DisplayObject {
   Image image = null;
   PrimitiveTest();
@@ -9,6 +13,7 @@ class PrimitiveTest extends DisplayObject {
   void onInit(Stage stage) {
     stage.context.loadImage("assets/test.jpg").then((Image i) {
       image = i;
+      stage.markPaintshot();
     });
   }
 
