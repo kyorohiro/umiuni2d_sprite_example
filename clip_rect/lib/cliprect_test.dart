@@ -5,12 +5,16 @@ import 'dart:async';
 
 Future onStart(GameWidget game) async {
   game.stage.root.addChild(new PrimitiveTest());
+  game.stage.kick((new DateTime.now().millisecondsSinceEpoch));
+  game.stage.markPaintshot();
 }
+
 class PrimitiveTest extends DisplayObject {
   Image image = null;
   PrimitiveTest();
 
   void onInit(Stage stage) {
+    print(">>> onInit");
     stage.context.loadImage("assets/test.jpg").then((Image i) {
       image = i;
       stage.markPaintshot();
