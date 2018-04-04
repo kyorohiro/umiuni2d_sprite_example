@@ -9,6 +9,7 @@ Future onStart(GameWidget game) async {
   game.stage.root.addChild(new BitmapFontTest());
   //
   // onshot paint request
+  game.stage.kick((new DateTime.now().millisecondsSinceEpoch));
   game.stage.markPaintshot();
   return;
 }
